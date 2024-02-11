@@ -1,11 +1,15 @@
 
-import 'package:be_my_valentine/core/params/params.dart';
 import 'package:be_my_valentine/extension/date.dart';
 import 'package:be_my_valentine/src/data/data_sources/remote/photo_remote_data_source.dart';
 import 'package:be_my_valentine/src/data/models/photo.dart';
+import 'package:be_my_valentine/src/domain/usecases/photos/add_photo.dart';
+import 'package:be_my_valentine/src/presentation/screens/bottom_bar/add.dart';
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
+
 
 part 'photo_event.dart';
 part 'photo_state.dart';

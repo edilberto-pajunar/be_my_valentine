@@ -1,4 +1,5 @@
 import 'package:be_my_valentine/src/presentation/bloc/photos/photo_bloc.dart';
+import 'package:be_my_valentine/src/presentation/screens/bottom_bar/add.dart';
 import 'package:be_my_valentine/src/presentation/screens/bottom_bar/gallery.dart';
 import 'package:be_my_valentine/src/presentation/screens/bottom_bar/home.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +63,15 @@ class _AppScreenState extends State<AppScreen> {
         ),
 
       ),
-      body: body[currentIndex],
+      body: BlocListener<PhotoBloc, PhotoState>(
+        listener: (context, state) {
+          if (state is PhotoAdded) {
+            Navigator.of(context).push(MaterialPageRoute(builder: (context)
+              => AddPhotoScreen()));
+          }
+        },
+        child: body[currentIndex],
+      ),
     );
   }
 }

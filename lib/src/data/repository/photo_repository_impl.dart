@@ -1,8 +1,10 @@
 import 'package:be_my_valentine/core/errors/failure.dart';
-import 'package:be_my_valentine/core/params/params.dart';
+import 'package:be_my_valentine/core/utils/typedef.dart';
 import 'package:be_my_valentine/src/data/data_sources/remote/photo_remote_data_source.dart';
+import 'package:be_my_valentine/src/data/models/photo.dart';
 import 'package:be_my_valentine/src/domain/entities/photo.dart';
 import 'package:be_my_valentine/src/domain/repository/photo_repository.dart';
+import 'package:be_my_valentine/src/domain/usecases/photos/add_photo.dart';
 import 'package:dartz/dartz.dart';
 
 class PhotoRepositoryImpl implements PhotoRepository {
@@ -11,11 +13,11 @@ class PhotoRepositoryImpl implements PhotoRepository {
   const PhotoRepositoryImpl(this._photoRemoteService);
 
   @override
-  Future<Either<Failure,List<PhotoEntity>>> getPhotos({
+  ResultFuture<List<PhotoModel>> getPhotos({
     required String id,
   }) async {
     try {
-      final List<PhotoEntity> getPhotos = await _photoRemoteService.getPhotos(id: id);
+      final List<PhotoModel> getPhotos = await _photoRemoteService.getPhotos(id: id);
       return Right(getPhotos);
     } catch (e) {
       return Left(ServerFailure(
@@ -25,7 +27,17 @@ class PhotoRepositoryImpl implements PhotoRepository {
   }
 
   @override
-  Future<void> addPhotos({required PhotoParams params}) async {
+  ResultVoid addPhotos({
+    required PhotoParams params,
+  }) async {
     await _photoRemoteService.addPhotos(params: params);
+    return const Right(null);
   }
+
+  // @override
+  // ResultVoid addPhotos({
+  //   required PhotoParams params,
+  // }) async {
+  //   await _photoRemoteService.addPhotos(params: params);
+  // }
 }

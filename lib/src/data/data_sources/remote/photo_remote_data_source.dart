@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:be_my_valentine/core/constants/strings/firebase_collection.dart';
-import 'package:be_my_valentine/core/params/params.dart';
 import 'package:be_my_valentine/extension/date.dart';
 import 'package:be_my_valentine/src/data/models/photo.dart';
+import 'package:be_my_valentine/src/domain/usecases/photos/add_photo.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 
@@ -33,12 +33,12 @@ class PhotoRemoteDataSourceImpl implements PhotoRemoteDataSource {
     Reference refImageToUpload = refDirImages.child(uniqueFileName);
 
     try {
-      await refImageToUpload.putFile(File(params.file.path));
-      imageUrl = await refImageToUpload.getDownloadURL();
+      // await refImageToUpload.putFile(File(params.file.path));
+      // imageUrl = await refImageToUpload.getDownloadURL();
 
-      db.collection(photos).doc(dateCollectionId).set({
-        "photos": params.photoModel.toJson(),
-      });
+      // db.collection(photos).doc(dateCollectionId).set({
+      //   "photos": params.photoModel.toJson(),
+      // });
     } on FirebaseException catch (e) {
       throw();
     }

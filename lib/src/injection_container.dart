@@ -1,12 +1,7 @@
-import 'package:be_my_valentine/src/data/data_sources/remote/news_api_service.dart';
-import 'package:be_my_valentine/src/data/data_sources/remote/photo_remote_data_source.dart';
-import 'package:be_my_valentine/src/data/repository/article_repository_impl.dart';
 import 'package:be_my_valentine/src/data/repository/photo_repository_impl.dart';
-import 'package:be_my_valentine/src/domain/repository/article_repository.dart';
 import 'package:be_my_valentine/src/domain/repository/photo_repository.dart';
 import 'package:be_my_valentine/src/domain/usecases/photos/add_photo.dart';
-import 'package:be_my_valentine/src/domain/usecases/get_article.dart';
-import 'package:be_my_valentine/src/presentation/bloc/article/remote/remote_article_bloc.dart';
+import 'package:be_my_valentine/src/domain/usecases/photos/get_photo.dart';
 import 'package:be_my_valentine/src/presentation/bloc/photos/photo_bloc.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -32,22 +27,19 @@ Future<void> initializeDependencies() async {
 
   // Blocs
   // App Logic
-  sl.registerFactory<RemoteArticleBloc>(() => RemoteArticleBloc(sl()));
   sl.registerFactory<PhotoBloc>(() => PhotoBloc(sl()));
 
   // Use cases
-  sl.registerLazySingleton<GetArticleUseCase>(() => GetArticleUseCase(sl()));
+  // sl.registerLazySingleton<GetArticleUseCase>(() => GetArticleUseCase(sl()));
   sl.registerLazySingleton<AddPhotoUseCase>(() => AddPhotoUseCase(sl()));
+  sl.registerLazySingleton<GetPhotoUseCase>(() => GetPhotoUseCase(sl()));
 
   // Repositories
-  sl.registerLazySingleton<ArticleRepository>(() => ArticleRepositoryImpl(sl()));
   sl.registerLazySingleton<PhotoRepository>(() => (PhotoRepositoryImpl(sl())));
 
   // Data Sources
-  sl.registerLazySingleton<NewsApiService>(() => NewsApiServiceImpl(sl()));
 
   // External Dependencies
-  sl.registerLazySingleton(http.Client.new);
   sl.registerLazySingleton(() => FirebaseStorage.instance);
 }
 
