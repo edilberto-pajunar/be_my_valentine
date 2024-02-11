@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1014070151531",
+    "project_id": "be-my-valentine-2ec2c",
+    "storage_bucket": "be-my-valentine-2ec2c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1014070151531:android:525c457dac41ee2898a42e",
+        "android_client_info": {
+          "package_name": "com.example.be_my_valentine"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaDMb4LPqtoaGKc7S9CsVE2t3_lpRQboI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
